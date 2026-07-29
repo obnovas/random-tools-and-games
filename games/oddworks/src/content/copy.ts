@@ -1,0 +1,35 @@
+export const GAME_COPY = {
+  title: "Oddworks",
+  subtitle: "Small town. Limited means. Many good answers.",
+  phase: {
+    discover: "Wander",
+    discoverHelp: "The clock is paused. Watch the market and notice what gets in the way.",
+    build: "Tinker",
+    buildHelp: "Place tools and invite a specialist to help. Nothing is final yet.",
+    operate: "Market Open",
+    operateHelp: "The town is moving. Adapt your plan before the closing bell.",
+    resolved: "Market Day Remembered",
+  },
+  actions: {
+    begin: "Open the market",
+    reset: "Try another way",
+    pause: "Pause",
+    resume: "Carry on",
+    speed: "Hurry time",
+    inspect: "Take a closer look",
+    unassign: "Let them wander",
+  },
+  feedback: {
+    noBudget: "That needs more timber and twine than you have.",
+    blocked: "There is no sound footing for that here.",
+    occupied: "Something else already has this patch.",
+    discovered: "Something worth noticing…",
+    stable: "It works. Can it keep working?",
+  },
+  visitorThoughts: {
+    hurried: ["Quickly now!", "Is there a shorter way?", "A clear sign—good."],
+    curious: ["What is over there?", "I heard a bell!", "Perhaps the scenic way."],
+    served: ["Just what I needed.", "Worth the walk!", "I shall tell the others."],
+    lost: ["Maybe another day.", "I cannot make sense of this.", "The bell will ring soon."],
+  },
+} as const;

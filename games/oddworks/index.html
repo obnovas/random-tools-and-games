@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#4f6d43">
+  <title>Oddworks — Bread Before Sunset</title>
+  <link rel="stylesheet" href="src/visuals/theme.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="masthead">
+    <div><span class="eyebrow">A tiny systems puzzle</span><h1>ODDWORKS</h1></div>
+    <button id="helpButton" class="round-button" aria-label="How to play">?</button>
+  </header>
+  <main>
+    <section class="mission ow-panel">
+      <div class="mission-number">01</div>
+      <div><span class="ow-label">Market Morning</span><h2>Bread before sunset</h2><p><strong>Six neighbors need bread.</strong> The fruit queue has jammed the short lane. Help them reach Orin’s Bakery before it closes.</p></div>
+      <div class="objective"><span class="ow-label">Today’s job</span><strong><span id="served">0</span> / 6 served</strong><div class="ow-meter"><span id="servedMeter"></span></div></div>
+    </section>
+
+    <section class="status-strip" aria-label="Market status">
+      <div><span class="ow-label">Phase</span><strong id="phase">Plan freely</strong></div>
+      <div><span class="ow-label">Until sunset</span><strong id="time">0:52</strong></div>
+      <div><span class="ow-label">Timber left</span><strong id="budget">32</strong></div>
+      <div><span class="ow-label">Goodwill</span><strong id="goodwillText">100%</strong></div>
+    </section>
+
+    <section class="workspace">
+      <aside class="guide ow-panel">
+        <span class="ow-label">Your plan</span>
+        <h3 id="guideTitle">First, look at the problem</h3>
+        <p id="guideCopy">Click the blue <strong>Notice</strong> marker beside the crowded lane. Time is paused while you investigate.</p>
+        <ol class="steps">
+          <li id="step-observe" class="active"><span>1</span>Notice the blockage</li>
+          <li id="step-build"><span>2</span>Select and place a tool</li>
+          <li id="step-run"><span>3</span>Open the market</li>
+        </ol>
+        <button id="skipGuide" class="text-button">Skip guided steps</button>
+        <div class="plain-facts">
+          <span class="ow-label">What you know</span>
+          <p>🍞 Neighbors want the bakery.</p>
+          <p>▥ The fruit lane is jammed.</p>
+          <p>↗ The quiet alley is open.</p>
+        </div>
+      </aside>
+
+      <div class="play-column">
+        <div id="actionBar" class="action-bar" role="status"><strong>STEP 1</strong><span>Click the blue Notice marker on the map.</span><button id="cancelSelection" hidden>Cancel</button></div>
+        <div class="board-wrap ow-panel">
+          <canvas id="board" class="ow-canvas" width="960" height="560" aria-label="Interactive map. Use the controls below for keyboard-accessible placement."></canvas>
+          <div id="toast" role="status" aria-live="polite"></div>
+          <div id="hoverTip" hidden></div>
+        </div>
+        <div class="run-controls">
+          <button id="start" class="ow-button ow-button--primary" disabled>Open the market</button>
+          <button id="tryBare" class="text-button">Try without tools</button>
+          <button id="pause" class="ow-button" disabled>Pause</button>
+          <button id="speed" class="ow-button" disabled>Speed ×1</button>
+          <button id="undo" class="ow-button" disabled>Undo</button>
+          <button id="reset" class="ow-button">Reset</button>
+        </div>
+
+        <section class="tray ow-panel">
+          <div class="tray-heading"><div><span class="ow-label">Workshop</span><h3>Choose an intervention</h3></div><p>Select a card, then place it on a glowing map target.</p></div>
+          <div id="tools" class="tool-list"></div>
+          <div class="tray-heading specialists-heading"><div><span class="ow-label">Neighbors who can help</span></div><p>Assign a person to a glowing place.</p></div>
+          <div id="specialists" class="specialist-list"></div>
+        </section>
+      </div>
+
+      <aside class="observations ow-panel">
+        <span class="ow-label">Live explanation</span><h3>Why things happen</h3>
+        <div id="eventLog" class="event-log"><div class="event"><strong>Planning is free.</strong><span>Explore and build before the clock starts.</span></div></div>
+        <div class="legend"><span><i class="notice-dot"></i> Notice</span><span><i class="build-dot"></i> Build here</span><span><i class="blocked-line"></i> Blocked</span></div>
+      </aside>
+    </section>
+  </main>
+
+  <dialog id="welcome">
+    <span class="ow-label">Welcome to Oddworks</span><h2>See the need. Shape the system.</h2>
+    <div class="welcome-grid"><div><b>1 · Notice</b><span>Watch what people need and what gets in their way.</span></div><div><b>2 · Build</b><span>Spend limited resources on a tool or a helpful neighbor.</span></div><div><b>3 · Adapt</b><span>Run your plan, pause, and change it when needed.</span></div></div>
+    <p>This first market morning is guided. You never need to type an answer, and later puzzles have many workable solutions.</p>
+    <button id="begin" class="ow-button ow-button--primary">Show me the market</button>
+  </dialog>
+  <dialog id="help"><button class="dialog-close" aria-label="Close">×</button><span class="ow-label">How to play</span><h2>Select, place, then watch.</h2><ol><li>Inspect blue <strong>Notice</strong> markers for plain facts.</li><li>Select a tool card. Compatible places glow gold; routes glow when a route tool is selected.</li><li>Click a glowing target to place it. Use <strong>Undo</strong> or press <kbd>Esc</kbd> to cancel.</li><li>Open the market. Pause at any time to revise your plan.</li></ol></dialog>
+  <dialog id="results"><div id="resultContent"></div><div class="result-actions"><button id="keepTinkering" class="ow-button">Improve this plan</button><button id="replay" class="ow-button ow-button--primary">Try another way</button></div></dialog>
+  <script type="module" src="game.js"></script>
+</body>
+</html>
