@@ -17,3 +17,8 @@ python3 -m http.server 8000
 ```
 
 Then open `http://localhost:8000/games/oddworks/`.
+
+The first scenario, **Market Morning**, is a guided introduction: inspect the
+crowded fruit lane, choose a tool or specialist, place it on a highlighted map
+target, and open the market. The clock is paused during planning, and every
+placement can be undone before trying another solution.

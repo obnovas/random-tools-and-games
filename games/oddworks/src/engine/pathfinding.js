@@ -2,6 +2,14 @@ function edgeCost(edge, agent, state) {
   if (edge.enabled === false || edge.blocked) return Infinity;
   const tool = state.tools.find((item) => item.edgeId === edge.id && item.active);
   if (tool?.type === "gate" && tool.mode === "closed") return Infinity;
+  const cartBias = state.tools.some((item) => item.edgeId === edge.id && item.active && item.type === "cart")
+    ? -Math.min(edge.length * 0.45, 4)
+    : 0;
+  const crowd = state.agents.filter((item) => item.edgeId === edge.id).length;
+  const signBias = state.tools
+    .filter((item) => item.active && item.type === "sign" && (item.edgeId ? item.edgeId === edge.id : item.nodeId === edge.to))
+    .reduce((total, item) => total + (item.targetTag && agent.tags?.includes(item.targetTag) ? -item.strength : 0), 0);
+  return Math.max(0.05, edge.length + crowd * (edge.crowdCost ?? 0.08) + signBias + cartBias);
   const crowd = state.agents.filter((item) => item.edgeId === edge.id).length;
   const signBias = state.tools
     .filter((item) => item.nodeId === edge.to && item.active && item.type === "sign")

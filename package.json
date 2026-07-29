@@ -4,6 +4,7 @@
   "type": "module",
   "scripts": {
     "test": "node --test",
+    "check": "node --check games/oddworks/game.js && node --check games/oddworks/src/content/marketMorning.js && node --check games/oddworks/src/engine/simulation.js"
     "check": "node --check games/oddworks/game.js && node --check games/oddworks/src/engine/simulation.js"
   }
 }
