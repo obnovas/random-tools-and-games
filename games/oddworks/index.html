@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#4f6d43">
   <title>Oddworks — Bread Before Sunset</title>
+  <title>Oddworks — The Bell at Barrow Market</title>
   <link rel="stylesheet" href="src/visuals/theme.css">
   <link rel="stylesheet" href="styles.css">
 </head>
@@ -86,6 +87,48 @@
   </dialog>
   <dialog id="help"><button class="dialog-close" aria-label="Close">×</button><span class="ow-label">How to play</span><h2>Select, place, then watch.</h2><ol><li>Inspect blue <strong>Notice</strong> markers for plain facts.</li><li>Select a tool card. Compatible places glow gold; routes glow when a route tool is selected.</li><li>Click a glowing target to place it. Use <strong>Undo</strong> or press <kbd>Esc</kbd> to cancel.</li><li>Open the market. Pause at any time to revise your plan.</li></ol></dialog>
   <dialog id="results"><div id="resultContent"></div><div class="result-actions"><button id="keepTinkering" class="ow-button">Improve this plan</button><button id="replay" class="ow-button ow-button--primary">Try another way</button></div></dialog>
+    <section class="story ow-panel">
+      <div><span class="ow-label">Barrow Market · Market Day</span><h2>The bell is due before sundown.</h2></div>
+      <p>Visitors are arriving, but the market's routes are a muddle. Watch first. Then spend your limited timber wisely and help <strong>10 visitors</strong> reach a stall.</p>
+    </section>
+    <section class="hud" aria-label="Market status">
+      <div><span class="ow-label">Phase</span><strong id="phase">Planning</strong></div>
+      <div><span class="ow-label">Time</span><strong id="time">1:15</strong></div>
+      <div><span class="ow-label">Served</span><strong><span id="served">0</span>/10</strong></div>
+      <div><span class="ow-label">Timber</span><strong id="budget">42</strong></div>
+      <div class="satisfaction"><span class="ow-label">Goodwill</span><div class="ow-meter"><span id="goodwill" style="width:100%"></span></div></div>
+    </section>
+    <section class="game-layout">
+      <aside class="toolbox ow-panel">
+        <span class="ow-label">Your field kit</span>
+        <h3>Build & assign</h3>
+        <p class="hint" id="toolHint">Choose a tool, then place it on a marked junction.</p>
+        <div id="tools" class="tool-list"></div>
+        <div class="divider"></div>
+        <span class="ow-label">Specialists</span>
+        <div id="specialists" class="specialist-list"></div>
+      </aside>
+      <div class="board-wrap ow-panel">
+        <canvas id="board" class="ow-canvas" width="960" height="560" aria-label="Interactive map of Barrow Market"></canvas>
+        <div id="toast" role="status" aria-live="polite"></div>
+        <div class="canvas-controls">
+          <button id="start" class="ow-button ow-button--primary">Open the market</button>
+          <button id="pause" class="ow-button" disabled>Pause</button>
+          <button id="speed" class="ow-button" disabled>Speed ×1</button>
+          <button id="reset" class="ow-button">Start over</button>
+        </div>
+      </div>
+      <aside class="notebook ow-panel">
+        <span class="ow-label">Market notebook</span><h3>What do you notice?</h3>
+        <div id="clues" class="clues"></div>
+        <div class="divider"></div>
+        <span class="ow-label">Aim</span>
+        <ul><li>Serve at least 10 visitors.</li><li>Keep goodwill above half.</li><li>Spend less for an elegant result.</li></ul>
+      </aside>
+    </section>
+  </main>
+  <dialog id="help"><button class="dialog-close" aria-label="Close">×</button><span class="ow-label">How to play</span><h2>Observe. Tinker. Adapt.</h2><ol><li><strong>Plan freely.</strong> Click pulsing places and characters to discover how the market works.</li><li><strong>Build a response.</strong> Select signs, gates, bells, or carts and place them at junctions. Assign specialists where they help most.</li><li><strong>Open the market.</strong> Time only counts once you commit. Pause and revise whenever you like.</li><li><strong>Find your way.</strong> There is no single answer. Try a lean route, a people-first plan, or a grand clockwork contraption.</li></ol></dialog>
+  <dialog id="results"><div id="resultContent"></div><div class="result-actions"><button id="replay" class="ow-button">Try another way</button></div></dialog>
   <script type="module" src="game.js"></script>
 </body>
 </html>

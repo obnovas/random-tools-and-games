@@ -35,6 +35,7 @@ function normalizeLevel(level) {
   for (const edge of state.edges) edge.length ??= 1;
   for (const agent of state.agents) {
     agent.status ??= (agent.spawnAt ?? 0) > 0 ? "scheduled" : "idle";
+    agent.status ??= "idle";
     agent.speed ??= 1;
     agent.progress ??= 0;
     agent.satisfaction ??= 1;
@@ -55,6 +56,9 @@ function assignedBoost(state, agent, nodeId) {
     const specialist = state.agents.find((item) => item.id === assignment.agentId);
     return Math.max(boost, specialist?.assignmentBoost ?? 1.25);
   }, 1);
+  return state.assignments.some((item) => item.agentId === agent.id && item.nodeId === nodeId)
+    ? (agent.assignmentBoost ?? 1.25)
+    : 1;
 }
 
 function arrive(state, agent, nodeId) {
@@ -67,6 +71,10 @@ function arrive(state, agent, nodeId) {
     const value = agent.value ?? 1;
     state.metrics.delivered += value;
     if (value > 0) state.metrics.satisfaction += agent.satisfaction;
+  if (nodeId === agent.destinationId) {
+    agent.status = "delivered";
+    state.metrics.delivered += agent.value ?? 1;
+    state.metrics.satisfaction += agent.satisfaction;
     emit(state, "agent-delivered", { agentId: agent.id, nodeId });
     return;
   }
@@ -98,6 +106,7 @@ function moveAgents(state, dt) {
     const congestion = Math.max(0.28, 1 / (1 + Math.max(0, crowd - 1) * (edge.moveCrowdCost ?? 0.18)));
     const cart = state.tools.some((item) => item.active && item.type === "cart" && item.edgeId === edge.id) ? 1.75 : 1;
     const speed = agent.speed * assignedBoost(state, agent, edge.to) * congestion * cart;
+    const speed = agent.speed * assignedBoost(state, agent, edge.to);
     agent.progress += (speed * dt) / edge.length;
     if (agent.progress >= 1) arrive(state, agent, edge.to);
   }
@@ -168,6 +177,7 @@ export function createGame(level, options = {}) {
     if (!command?.type) return false;
     if (command.type === "start") {
       if (state.finished || state.phase !== "planning") return false;
+      if (state.finished) return false;
       state.phase = "live";
       state.running = true;
     } else if (command.type === "pause") {
@@ -231,6 +241,7 @@ export function createGame(level, options = {}) {
     else state.goalMetFor = 0;
     if (goalMet && state.goalMetFor >= (state.goal.stableSeconds ?? 2)) finish(state);
     if (!state.finished && state.time + Number.EPSILON * 16 >= state.duration) {
+    if (state.time + Number.EPSILON * 16 >= state.duration) {
       state.time = state.duration;
       finish(state);
     }

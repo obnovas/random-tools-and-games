@@ -8,6 +8,7 @@ const level = {
   budget: 20,
   goal: { deliveries: 1 },
   nodes: [{ id: "start" }, { id: "finish", kind: "stall" }],
+  nodes: [{ id: "start" }, { id: "finish" }],
   edges: [{ id: "path", from: "start", to: "finish", length: 1 }],
   agents: [{ id: "visitor", nodeId: "start", destinationId: "finish", speed: 1 }],
 };
