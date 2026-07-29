@@ -1,0 +1,9 @@
+{
+  "name": "random-tools-and-games",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test",
+    "check": "node --check games/oddworks/game.js && node --check games/oddworks/src/engine/simulation.js"
+  }
+}

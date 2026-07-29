@@ -1,0 +1,58 @@
+import type { ToolDefinition, ToolId } from "./types";
+
+export const TOOLS: Record<ToolId, ToolDefinition> = {
+  signpost: {
+    id: "signpost",
+    name: "Painted Signpost",
+    shortName: "Sign",
+    description: "Encourages passers-by to take the direction it points.",
+    hint: "Hurried visitors trust signs. Curious visitors only sometimes do.",
+    cost: 2,
+    footprint: { width: 1, height: 1 },
+    color: "#d9964a",
+    accent: "#6f3f28",
+    icon: "arrow",
+    tags: ["route"],
+  },
+  handcart: {
+    id: "handcart",
+    name: "Market Handcart",
+    shortName: "Cart",
+    description: "A small movable stall that serves visitors close to it.",
+    hint: "Bring the service to the crowd instead of bringing every crowd to the service.",
+    cost: 4,
+    footprint: { width: 2, height: 1 },
+    color: "#c75b48",
+    accent: "#5c2d2a",
+    icon: "cart",
+    tags: ["store"],
+  },
+  bell: {
+    id: "bell",
+    name: "Brass Handbell",
+    shortName: "Bell",
+    description: "Periodically catches attention and draws nearby visitors.",
+    hint: "Attention creates opportunity—and crowds. Place it with care.",
+    cost: 3,
+    footprint: { width: 1, height: 1 },
+    color: "#e0b64c",
+    accent: "#74542b",
+    icon: "bell",
+    tags: ["signal"],
+  },
+  footbridge: {
+    id: "footbridge",
+    name: "Timber Footbridge",
+    shortName: "Bridge",
+    description: "Creates a direct crossing over one narrow stretch of water.",
+    hint: "The direct route is powerful, but it consumes most of a small budget.",
+    cost: 6,
+    footprint: { width: 1, height: 3 },
+    color: "#a86d3f",
+    accent: "#4c3528",
+    icon: "bridge",
+    tags: ["crossing", "route"],
+  },
+};
+
+export const TOOL_ORDER: ToolId[] = ["signpost", "handcart", "bell", "footbridge"];

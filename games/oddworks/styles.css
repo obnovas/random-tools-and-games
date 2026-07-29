@@ -1,0 +1,26 @@
+@font-face { font-family: "Pixel"; src: local("Courier New"); }
+:root { --panel-gap: 14px; }
+body { min-height: 100vh; background: linear-gradient(#8fb2a5 0 28%, #769657 28% 100%); }
+body::before { content:""; position:fixed; inset:0; pointer-events:none; opacity:.18; background-image:radial-gradient(#fff 1px,transparent 1px); background-size:7px 7px; }
+.masthead { max-width:1400px; margin:auto; padding:18px 24px 8px; display:flex; justify-content:space-between; align-items:center; }
+h1 { margin:0; font:900 2.3rem/1 "Pixel",monospace; letter-spacing:.09em; text-shadow:3px 3px 0 #f5e7c4; }
+h2,h3,p { margin-top:0; } .eyebrow { font-size:.7rem; font-weight:900; letter-spacing:.18em; text-transform:uppercase; }
+.round-button,.dialog-close { border:2px solid #25221f; background:#f5e7c4; border-radius:50%; width:42px; height:42px; font-weight:900; font-size:1.2rem; cursor:pointer; box-shadow:0 3px #613f31; }
+main { max-width:1400px; margin:auto; padding:0 24px 30px; }
+.story { display:flex; gap:28px; justify-content:space-between; align-items:center; padding:14px 20px; margin-bottom:12px; }
+.story h2 { margin:3px 0 0; font-size:1.35rem; }.story p { max-width:680px; margin:0; color:#504a43; }
+.hud { display:grid; grid-template-columns:repeat(4,1fr) 2fr; gap:2px; border:3px solid #25221f; background:#25221f; margin-bottom:12px; }
+.hud>div { min-height:54px; background:#fff7df; padding:8px 13px; display:flex; flex-direction:column; }.hud strong { font:900 1.22rem "Pixel",monospace; }
+.satisfaction { justify-content:center }.satisfaction .ow-meter { margin-top:5px; }
+.game-layout { display:grid; grid-template-columns:220px minmax(520px,1fr) 220px; gap:var(--panel-gap); align-items:start; }
+.toolbox,.notebook { padding:15px; }.toolbox h3,.notebook h3 { margin:3px 0 6px; }.hint { font-size:.82rem; color:#504a43; min-height:48px; }
+.tool-list,.specialist-list { display:grid; gap:8px; }.tool-card,.specialist-card { width:100%; text-align:left; border:2px solid #25221f; border-radius:5px; padding:8px; background:#fff7df; cursor:pointer; box-shadow:0 2px #613f31; }
+.tool-card:hover,.specialist-card:hover { transform:translateY(-1px); }.tool-card.selected,.specialist-card.selected { background:#f1c85b; outline:3px solid #fff; }.tool-card:disabled { opacity:.45; cursor:not-allowed; }
+.card-title { display:flex; align-items:center; justify-content:space-between; font-weight:900; }.card-copy { display:block; font-size:.72rem; color:#504a43; margin-top:3px; }.tool-icon { font-size:1.2rem; }
+.divider { height:2px; background:#d9c393; margin:15px 0; }.board-wrap { position:relative; overflow:hidden; padding:0; }.ow-canvas { width:100%; height:auto; aspect-ratio:12/7; cursor:crosshair; }
+.canvas-controls { display:flex; gap:8px; flex-wrap:wrap; padding:10px; background:#d9c393; border-top:3px solid #25221f; }.canvas-controls button:first-child { flex:1; }
+#toast { opacity:0; position:absolute; left:50%; top:16px; transform:translate(-50%,-8px); background:#25221f; color:#fff7df; padding:8px 12px; border-radius:4px; pointer-events:none; font-weight:800; transition:.2s; }.show-toast #toast { opacity:1; transform:translate(-50%,0); }
+.clues { display:grid; gap:8px; }.clue { font-size:.78rem; padding:8px; border-left:4px solid #d9c393; background:#fff7df; }.clue.found { border-color:#5f8c55; }.clue .clue-mark { font-weight:900; }.notebook ul { padding-left:18px; font-size:.8rem; line-height:1.55; }
+dialog { max-width:580px; border:3px solid #25221f; border-radius:8px; background:#f5e7c4; color:#25221f; box-shadow:0 10px 40px #25221f88; padding:26px; }dialog::backdrop{background:#25221faa;}.dialog-close{position:absolute;right:12px;top:12px;}dialog li{margin-bottom:10px;line-height:1.45}.result-score{font:900 3rem "Pixel",monospace;color:#5f8c55}.fingerprints{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}.badge{border:2px solid #25221f;background:#fff7df;padding:6px 9px;border-radius:99px;font-weight:900;font-size:.8rem}.result-actions{margin-top:18px;display:flex;gap:8px}
+@media(max-width:1050px){.game-layout{grid-template-columns:190px 1fr}.notebook{grid-column:1/-1}.clues{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:760px){main,.masthead{padding-left:10px;padding-right:10px}.story{display:block}.story p{margin-top:8px}.hud{grid-template-columns:repeat(2,1fr)}.satisfaction{grid-column:1/-1}.game-layout{display:flex;flex-direction:column}.board-wrap{order:1;width:100%}.toolbox{order:2;width:100%}.notebook{order:3;width:100%}.tool-list,.specialist-list{grid-template-columns:repeat(2,1fr)}.clues{grid-template-columns:1fr}.canvas-controls .ow-button{font-size:.8rem;padding:6px}}

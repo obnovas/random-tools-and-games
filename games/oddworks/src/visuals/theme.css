@@ -1,0 +1,96 @@
+:root {
+  --ow-ink: #25221f;
+  --ow-ink-soft: #504a43;
+  --ow-paper: #f5e7c4;
+  --ow-paper-light: #fff7df;
+  --ow-paper-shade: #d9c393;
+  --ow-timber: #9d643f;
+  --ow-timber-dark: #613f31;
+  --ow-success: #5f8c55;
+  --ow-warning: #d2883d;
+  --ow-danger: #a9473e;
+  --ow-focus: #f1c85b;
+  --ow-shadow: 0 4px 0 #613f31, 0 7px 18px rgb(37 34 31 / 24%);
+  color-scheme: light;
+  font-family: "Trebuchet MS", "Avenir Next", system-ui, sans-serif;
+  color: var(--ow-ink);
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: #acc9bd;
+  color: var(--ow-ink);
+}
+
+button, input { font: inherit; }
+
+.ow-panel {
+  border: 3px solid var(--ow-ink);
+  border-radius: 8px;
+  background: var(--ow-paper);
+  box-shadow: var(--ow-shadow);
+}
+
+.ow-button {
+  min-height: 42px;
+  border: 2px solid var(--ow-ink);
+  border-radius: 6px;
+  padding: 8px 14px;
+  background: var(--ow-paper-light);
+  box-shadow: 0 3px 0 var(--ow-timber-dark);
+  color: var(--ow-ink);
+  cursor: pointer;
+  font-weight: 800;
+  letter-spacing: .02em;
+}
+
+.ow-button:hover { background: #fff1c7; transform: translateY(-1px); }
+.ow-button:active { box-shadow: 0 1px 0 var(--ow-timber-dark); transform: translateY(2px); }
+.ow-button[aria-pressed="true"], .ow-button--primary { background: var(--ow-focus); }
+.ow-button:disabled { cursor: not-allowed; filter: grayscale(.65); opacity: .55; }
+.ow-button:focus-visible { outline: 4px solid #fff; outline-offset: 2px; }
+
+.ow-label {
+  color: var(--ow-ink-soft);
+  font-size: .72rem;
+  font-weight: 900;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+
+.ow-meter {
+  overflow: hidden;
+  height: 14px;
+  border: 2px solid var(--ow-ink);
+  border-radius: 999px;
+  background: var(--ow-paper-light);
+}
+
+.ow-meter > span { display: block; height: 100%; background: var(--ow-success); }
+.ow-meter--warning > span { background: var(--ow-warning); }
+.ow-meter--danger > span { background: var(--ow-danger); }
+
+.ow-canvas {
+  display: block;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+  background: var(--ow-paper-shade);
+  touch-action: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    scroll-behavior: auto !important;
+    transition-duration: .01ms !important;
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
+
+@media (prefers-contrast: more) {
+  :root { --ow-ink: #100f0e; --ow-paper: #fff4d2; }
+  .ow-panel, .ow-button { border-width: 3px; }
+}
+
